@@ -44,7 +44,7 @@ this project predicts **net hourly electrical output (PE, in MW)** from:
 | Random forest | 3.349 | .9620 |
 
 - Adding the engineered **air-density** feature changed linear-model RMSE from 4.560 to 4.33
-  and random-forest RMSE from 3.362 to 3,349 — it helped the simple model but barely moved the forest,
+  and random-forest RMSE from 3.362 to 3.349 — it helped the simple model but barely moved the forest,
   which makes sense: trees already capture those interactions on their own.
 
 - **Best model:** Random Forest, with cross-validated RMSE ≈ 3.323 MW and R² ≈ .9620.

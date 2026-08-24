@@ -21,6 +21,9 @@ this project predicts **net hourly electrical output (PE, in MW)** from:
 - Loaded the data with `ucimlrepo`; no missing values, so no cleaning was needed.
 - Explored feature–target scatter plots and a correlation matrix before modeling.
   Temperature (AT) is the strongest driver of power, with vacuum (V) second.
+  - Engineered one physics-based feature — **inlet air density** — computed from AT, AP,
+  and RH using the ideal gas law plus a water-vapor correction, since gas-turbine power
+  is driven by inlet air mass flow.
 - Fit a `LinearRegression` baseline, then read its residuals against each input.
   The residuals curve against temperature, so I added a squared temperature term
   (`AT²`), which improved the fit — a small physics-guided correction.
@@ -37,8 +40,12 @@ this project predicts **net hourly electrical output (PE, in MW)** from:
 | Model | RMSE (MW) | R² |
 |---|---|---|
 | Dummy (mean) | 17.067 | ~0.00 |
-| Linear regression | 4.560 | .9285 |
+| Linear regression | 4.433 | .9285 |
 | Random forest | 3.323 | .9620 |
+
+- Adding the engineered **air-density** feature changed linear-model RMSE from `__` to `__`
+  and random-forest RMSE from 4.560 to 4.33 — it helped the simple model but barely moved the forest,
+  which makes sense: trees already capture those interactions on their own.
 
 - **Best model:** Random Forest, with cross-validated RMSE ≈ 3.323 MW and R² ≈ .9620.
 - **Most important inputs (random forest):** AT first, then V — consistent with
@@ -62,8 +69,8 @@ Holding the other inputs at their median and sweeping one at a time:
 - A random forest **can't extrapolate** beyond the temperatures it trained on, so it would be
   unreliable for conditions outside this dataset's range.
 - Assumes the plant's physics stays fixed — equipment aging or fouling would shift real behaviour.
-- **Next:** engineer a physics-based inlet-air-density feature (from AT, AP, RH) and test whether
-  it helps the linear model; add prediction intervals for uncertainty.
+- **Next:** add prediction intervals for uncertainty, and test on held-out temperature
+  extremes to measure how the model degrades outside its training range.
 
 ## How to run
 

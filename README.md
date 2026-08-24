@@ -45,8 +45,6 @@ this project predicts **net hourly electrical output (PE, in MW)** from:
   ambient temperature driving the gas turbine and exhaust vacuum driving the steam turbine.
 - Adding `AT²` to the linear model changed its RMSE from `4.5` to `4.3`.
 
-![Predicted vs. actual](plots/predicted_vs_actual.png)
-
 ## The physics check
 
 Holding the other inputs at their median and sweeping one at a time:

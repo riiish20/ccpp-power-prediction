@@ -35,7 +35,7 @@ this project predicts **net hourly electrical output (PE, in MW)** from:
 
 ## Results
 
-*(Read these off your cross-validation table and metric prints.)*
+
 
 | Model | RMSE (MW) | R² |
 |---|---|---|

@@ -47,10 +47,10 @@ this project predicts **net hourly electrical output (PE, in MW)** from:
   and random-forest RMSE from 3.362 to 3.349 — it helped the simple model but barely moved the forest,
   which makes sense: trees already capture those interactions on their own.
 
-- **Best model:** Random Forest, with cross-validated RMSE ≈ 3.323 MW and R² ≈ .9620.
+- **Best model:** Random Forest, with cross-validated RMSE ≈ 3.349 MW and R² ≈ .9620.
 - **Most important inputs (random forest):** AT first, then V — consistent with
   ambient temperature driving the gas turbine and exhaust vacuum driving the steam turbine.
-- Adding `AT²` to the linear model changed its RMSE from `4.5` to `4.3`.
+- Adding `AT²` to the linear model changed its RMSE from `4.394` to `4.302`.
 
 ## The physics check
 
